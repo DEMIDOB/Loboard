@@ -5,7 +5,9 @@
 
 [x] AND
 [x] OR
-[ ] board's wire devices method
+[x] board's wire devices method
+[ ] status command
+[ ] wire command
 
 [ ] NAND
 [ ] NOR
