@@ -8,9 +8,9 @@
 #include "Application.hpp"
 
 Application::Application()
+    : m_Board(new Board()), interface(new CommandLineInterface(m_Board)), running(false)
 {
-    m_Board = new Board();
-    interface = new CommandLineInterface(m_Board);
+
 }
 
 Application::~Application()

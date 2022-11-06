@@ -1,3 +1,5 @@
 /Loboard.xcodeproj/xcuserdata/lamacaroine.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
 .idea
 cmake-build-debug
+.vs
+Loboard/out
