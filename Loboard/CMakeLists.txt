@@ -38,4 +38,4 @@ add_executable(Loboard
         LBVector.hpp
         Logger.cpp
         Logger.hpp
-        main.cpp Interfaces/CLI/Commands/Command.cpp Interfaces/CLI/Commands/Command.hpp Interfaces/CLI/Commands/ListdCommand.cpp Interfaces/CLI/Commands/ListdCommand.hpp Interfaces/CLI/Commands/ExitCommand.cpp Interfaces/CLI/Commands/ExitCommand.hpp Interfaces/CLI/Commands/NewdCommand.cpp Interfaces/CLI/Commands/NewdCommand.hpp)
+        main.cpp Interfaces/CLI/Commands/Command.cpp Interfaces/CLI/Commands/Command.hpp Interfaces/CLI/Commands/ListdCommand.cpp Interfaces/CLI/Commands/ListdCommand.hpp Interfaces/CLI/Commands/ExitCommand.cpp Interfaces/CLI/Commands/ExitCommand.hpp Interfaces/CLI/Commands/NewdCommand.cpp Interfaces/CLI/Commands/NewdCommand.hpp Interfaces/CLI/Commands/StateCommand.cpp Interfaces/CLI/Commands/StateCommand.hpp Interfaces/CLI/Commands/CommandArgs.hpp)

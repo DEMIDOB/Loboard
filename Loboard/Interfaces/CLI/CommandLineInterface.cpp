@@ -10,6 +10,7 @@
 #include "CLI/Commands/ListdCommand.hpp"
 #include "CLI/Commands/ExitCommand.hpp"
 #include "CLI/Commands/NewdCommand.hpp"
+#include "CLI/Commands/StateCommand.hpp"
 
 CommandLineInterface::CommandLineInterface(Board* board)
     : Interface::Interface(board)
@@ -17,7 +18,8 @@ CommandLineInterface::CommandLineInterface(Board* board)
     std::vector<Command*> commands = {
         new ListdCommand(this, "ls"),
         new ExitCommand(this, "exit"),
-        new NewdCommand(this, "n")
+        new NewdCommand(this, "new"),
+        new StateCommand(this, "state"),
     };
 
     for (Command* cmd : commands)

@@ -13,9 +13,9 @@
 class GateDevice: public Device
 {
 public:
-    GateDevice(uint8_t id);
+    explicit GateDevice(uint8_t id);
     
-    void Update();
+    void Update() override;
     
 protected:
     // Works as OR by default

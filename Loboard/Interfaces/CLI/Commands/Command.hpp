@@ -10,6 +10,8 @@ class CommandLineInterface;
 #include <iostream>
 #include <string>
 
+#include "CommandArgs.hpp"
+
 #define CLI_OUT(x) std::cout << " -- " << x << std::endl;
 #define CLI_HANDLER_ARGS CommandLineInterface& interface, const std::string& cmd
 
@@ -20,12 +22,12 @@ class Command
 protected:
     std::string keyword;
     CommandLineInterface *const interface;
+
+    static void decompose(const std::string&, CommandArgs*);
 public:
     const std::string &GetKeyword() const;
 
-public:
     Command(CommandLineInterface *commandLineInterface, std::string keyword);
-
     virtual bool Handle(const std::string& cmd) = 0;
 };
 
