@@ -1,0 +1,12 @@
+[x] board's add device method
+
+[x] decide - does input semantics really matter?
+[x] device's indexed (generic) inputs
+
+[x] AND
+[x] OR
+[ ] board's wire devices method
+
+[ ] NAND
+[ ] NOR
+[ ] XOR

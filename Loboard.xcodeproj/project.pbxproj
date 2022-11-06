@@ -7,7 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9641C73A29158D7A009C824A /* GateDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9641C73829158D7A009C824A /* GateDevice.cpp */; };
+		9641C73B29158D7A009C824A /* GateDevice.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9641C73929158D7A009C824A /* GateDevice.hpp */; };
+		9641C73E291590DA009C824A /* AndGateDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9641C73C291590DA009C824A /* AndGateDevice.cpp */; };
+		9641C73F291590DA009C824A /* AndGateDevice.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9641C73D291590DA009C824A /* AndGateDevice.hpp */; };
+		9641C74229159158009C824A /* OrGateDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9641C74029159158009C824A /* OrGateDevice.cpp */; };
+		9641C74329159158009C824A /* OrGateDevice.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9641C74129159158009C824A /* OrGateDevice.hpp */; };
 		964D35FC2914172500ABC3A2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 964D35FB2914172500ABC3A2 /* main.cpp */; };
+		9693BC9029151B55007311C6 /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9693BC8E29151B55007311C6 /* Interface.cpp */; };
+		9693BC9129151B55007311C6 /* Interface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9693BC8F29151B55007311C6 /* Interface.hpp */; };
+		9693BC94291523DC007311C6 /* CommandLineInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9693BC92291523DC007311C6 /* CommandLineInterface.cpp */; };
+		9693BC95291523DC007311C6 /* CommandLineInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9693BC93291523DC007311C6 /* CommandLineInterface.hpp */; };
+		96CC633A291715690096F11A /* Devices.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 96CC6338291715690096F11A /* Devices.hpp */; };
+		96FFDC6F29142068008C85B8 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FFDC6D29142068008C85B8 /* Application.cpp */; };
+		96FFDC7029142068008C85B8 /* Application.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 96FFDC6E29142068008C85B8 /* Application.hpp */; };
+		96FFDC73291427D9008C85B8 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FFDC71291427D9008C85B8 /* Board.cpp */; };
+		96FFDC74291427D9008C85B8 /* Board.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 96FFDC72291427D9008C85B8 /* Board.hpp */; };
+		96FFDC7829142C9D008C85B8 /* Device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FFDC7629142C9D008C85B8 /* Device.cpp */; };
+		96FFDC7929142C9D008C85B8 /* Device.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 96FFDC7729142C9D008C85B8 /* Device.hpp */; };
+		96FFDC7C29142D33008C85B8 /* LBVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FFDC7A29142D33008C85B8 /* LBVector.cpp */; };
+		96FFDC7D29142D33008C85B8 /* LBVector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 96FFDC7B29142D33008C85B8 /* LBVector.hpp */; };
+		96FFDC80291431E5008C85B8 /* Wire.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FFDC7E291431E5008C85B8 /* Wire.cpp */; };
+		96FFDC81291431E5008C85B8 /* Wire.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 96FFDC7F291431E5008C85B8 /* Wire.hpp */; };
+		96FFDC8429144730008C85B8 /* PowerDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FFDC8229144730008C85B8 /* PowerDevice.cpp */; };
+		96FFDC8529144730008C85B8 /* PowerDevice.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 96FFDC8329144730008C85B8 /* PowerDevice.hpp */; };
+		96FFDC88291449E5008C85B8 /* GroundDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FFDC86291449E5008C85B8 /* GroundDevice.cpp */; };
+		96FFDC89291449E5008C85B8 /* GroundDevice.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 96FFDC87291449E5008C85B8 /* GroundDevice.hpp */; };
+		96FFDC8C29144B51008C85B8 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FFDC8A29144B51008C85B8 /* Logger.cpp */; };
+		96FFDC8D29144B51008C85B8 /* Logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 96FFDC8B29144B51008C85B8 /* Logger.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +50,39 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9641C73829158D7A009C824A /* GateDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GateDevice.cpp; sourceTree = "<group>"; };
+		9641C73929158D7A009C824A /* GateDevice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GateDevice.hpp; sourceTree = "<group>"; };
+		9641C73C291590DA009C824A /* AndGateDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AndGateDevice.cpp; sourceTree = "<group>"; };
+		9641C73D291590DA009C824A /* AndGateDevice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AndGateDevice.hpp; sourceTree = "<group>"; };
+		9641C74029159158009C824A /* OrGateDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrGateDevice.cpp; sourceTree = "<group>"; };
+		9641C74129159158009C824A /* OrGateDevice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OrGateDevice.hpp; sourceTree = "<group>"; };
 		964D35F82914172500ABC3A2 /* Loboard */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Loboard; sourceTree = BUILT_PRODUCTS_DIR; };
 		964D35FB2914172500ABC3A2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9693BC8C2914E1A4007311C6 /* roadmap.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = roadmap.txt; sourceTree = "<group>"; };
+		9693BC8E29151B55007311C6 /* Interface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Interface.cpp; sourceTree = "<group>"; };
+		9693BC8F29151B55007311C6 /* Interface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Interface.hpp; sourceTree = "<group>"; };
+		9693BC92291523DC007311C6 /* CommandLineInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommandLineInterface.cpp; sourceTree = "<group>"; };
+		9693BC93291523DC007311C6 /* CommandLineInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommandLineInterface.hpp; sourceTree = "<group>"; };
+		96CC6338291715690096F11A /* Devices.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Devices.hpp; sourceTree = "<group>"; };
+		96FFDC6729141EDE008C85B8 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		96FFDC6929141EE4008C85B8 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.dylib; path = "../../../lib/glfw-3.3.8.bin.MACOS/lib-universal/libglfw.3.dylib"; sourceTree = "<group>"; };
+		96FFDC6B29141FFC008C85B8 /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.dylib; path = ../../../../../../opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.dylib; sourceTree = "<group>"; };
+		96FFDC6D29142068008C85B8 /* Application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
+		96FFDC6E29142068008C85B8 /* Application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Application.hpp; sourceTree = "<group>"; };
+		96FFDC71291427D9008C85B8 /* Board.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Board.cpp; sourceTree = "<group>"; };
+		96FFDC72291427D9008C85B8 /* Board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Board.hpp; sourceTree = "<group>"; };
+		96FFDC7629142C9D008C85B8 /* Device.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Device.cpp; sourceTree = "<group>"; };
+		96FFDC7729142C9D008C85B8 /* Device.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Device.hpp; sourceTree = "<group>"; };
+		96FFDC7A29142D33008C85B8 /* LBVector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LBVector.cpp; sourceTree = "<group>"; };
+		96FFDC7B29142D33008C85B8 /* LBVector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LBVector.hpp; sourceTree = "<group>"; };
+		96FFDC7E291431E5008C85B8 /* Wire.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Wire.cpp; sourceTree = "<group>"; };
+		96FFDC7F291431E5008C85B8 /* Wire.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Wire.hpp; sourceTree = "<group>"; };
+		96FFDC8229144730008C85B8 /* PowerDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PowerDevice.cpp; sourceTree = "<group>"; };
+		96FFDC8329144730008C85B8 /* PowerDevice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PowerDevice.hpp; sourceTree = "<group>"; };
+		96FFDC86291449E5008C85B8 /* GroundDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GroundDevice.cpp; sourceTree = "<group>"; };
+		96FFDC87291449E5008C85B8 /* GroundDevice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GroundDevice.hpp; sourceTree = "<group>"; };
+		96FFDC8A29144B51008C85B8 /* Logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
+		96FFDC8B29144B51008C85B8 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,11 +96,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9641C73729158D5B009C824A /* Gates */ = {
+			isa = PBXGroup;
+			children = (
+				9641C73829158D7A009C824A /* GateDevice.cpp */,
+				9641C73929158D7A009C824A /* GateDevice.hpp */,
+				9641C73C291590DA009C824A /* AndGateDevice.cpp */,
+				9641C73D291590DA009C824A /* AndGateDevice.hpp */,
+				9641C74029159158009C824A /* OrGateDevice.cpp */,
+				9641C74129159158009C824A /* OrGateDevice.hpp */,
+			);
+			path = Gates;
+			sourceTree = "<group>";
+		};
 		964D35EF2914172500ABC3A2 = {
 			isa = PBXGroup;
 			children = (
 				964D35FA2914172500ABC3A2 /* Loboard */,
 				964D35F92914172500ABC3A2 /* Products */,
+				964D36022914188600ABC3A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,18 +129,92 @@
 		964D35FA2914172500ABC3A2 /* Loboard */ = {
 			isa = PBXGroup;
 			children = (
+				9693BC8D29151B4A007311C6 /* Interfaces */,
+				96FFDC7529142C92008C85B8 /* Devices */,
 				964D35FB2914172500ABC3A2 /* main.cpp */,
+				96FFDC6D29142068008C85B8 /* Application.cpp */,
+				96FFDC71291427D9008C85B8 /* Board.cpp */,
+				96FFDC72291427D9008C85B8 /* Board.hpp */,
+				96FFDC6E29142068008C85B8 /* Application.hpp */,
+				96FFDC7A29142D33008C85B8 /* LBVector.cpp */,
+				96FFDC7B29142D33008C85B8 /* LBVector.hpp */,
+				96FFDC8A29144B51008C85B8 /* Logger.cpp */,
+				96FFDC8B29144B51008C85B8 /* Logger.hpp */,
+				9693BC8C2914E1A4007311C6 /* roadmap.txt */,
 			);
 			path = Loboard;
 			sourceTree = "<group>";
 		};
+		964D36022914188600ABC3A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96FFDC6B29141FFC008C85B8 /* libglfw.dylib */,
+				96FFDC6929141EE4008C85B8 /* libglfw.3.dylib */,
+				96FFDC6729141EDE008C85B8 /* OpenGL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9693BC8D29151B4A007311C6 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				9693BC8E29151B55007311C6 /* Interface.cpp */,
+				9693BC8F29151B55007311C6 /* Interface.hpp */,
+				9693BC92291523DC007311C6 /* CommandLineInterface.cpp */,
+				9693BC93291523DC007311C6 /* CommandLineInterface.hpp */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		96FFDC7529142C92008C85B8 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				9641C73729158D5B009C824A /* Gates */,
+				96FFDC7629142C9D008C85B8 /* Device.cpp */,
+				96FFDC7729142C9D008C85B8 /* Device.hpp */,
+				96FFDC7E291431E5008C85B8 /* Wire.cpp */,
+				96FFDC7F291431E5008C85B8 /* Wire.hpp */,
+				96FFDC8229144730008C85B8 /* PowerDevice.cpp */,
+				96FFDC8329144730008C85B8 /* PowerDevice.hpp */,
+				96FFDC86291449E5008C85B8 /* GroundDevice.cpp */,
+				96FFDC87291449E5008C85B8 /* GroundDevice.hpp */,
+				96CC6338291715690096F11A /* Devices.hpp */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		96627C2F29141B4A00B74EA0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96CC633A291715690096F11A /* Devices.hpp in Headers */,
+				9693BC95291523DC007311C6 /* CommandLineInterface.hpp in Headers */,
+				9641C73B29158D7A009C824A /* GateDevice.hpp in Headers */,
+				9693BC9129151B55007311C6 /* Interface.hpp in Headers */,
+				9641C73F291590DA009C824A /* AndGateDevice.hpp in Headers */,
+				96FFDC8D29144B51008C85B8 /* Logger.hpp in Headers */,
+				96FFDC7029142068008C85B8 /* Application.hpp in Headers */,
+				96FFDC74291427D9008C85B8 /* Board.hpp in Headers */,
+				9641C74329159158009C824A /* OrGateDevice.hpp in Headers */,
+				96FFDC7929142C9D008C85B8 /* Device.hpp in Headers */,
+				96FFDC7D29142D33008C85B8 /* LBVector.hpp in Headers */,
+				96FFDC89291449E5008C85B8 /* GroundDevice.hpp in Headers */,
+				96FFDC8529144730008C85B8 /* PowerDevice.hpp in Headers */,
+				96FFDC81291431E5008C85B8 /* Wire.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		964D35F72914172500ABC3A2 /* Loboard */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 964D35FF2914172500ABC3A2 /* Build configuration list for PBXNativeTarget "Loboard" */;
 			buildPhases = (
+				96627C2F29141B4A00B74EA0 /* Headers */,
 				964D35F42914172500ABC3A2 /* Sources */,
 				964D35F52914172500ABC3A2 /* Frameworks */,
 				964D35F62914172500ABC3A2 /* CopyFiles */,
@@ -119,7 +265,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9693BC94291523DC007311C6 /* CommandLineInterface.cpp in Sources */,
+				9641C74229159158009C824A /* OrGateDevice.cpp in Sources */,
+				96FFDC88291449E5008C85B8 /* GroundDevice.cpp in Sources */,
+				96FFDC8C29144B51008C85B8 /* Logger.cpp in Sources */,
+				96FFDC80291431E5008C85B8 /* Wire.cpp in Sources */,
+				9641C73E291590DA009C824A /* AndGateDevice.cpp in Sources */,
+				9693BC9029151B55007311C6 /* Interface.cpp in Sources */,
+				96FFDC73291427D9008C85B8 /* Board.cpp in Sources */,
+				96FFDC6F29142068008C85B8 /* Application.cpp in Sources */,
 				964D35FC2914172500ABC3A2 /* main.cpp in Sources */,
+				9641C73A29158D7A009C824A /* GateDevice.cpp in Sources */,
+				96FFDC7C29142D33008C85B8 /* LBVector.cpp in Sources */,
+				96FFDC7829142C9D008C85B8 /* Device.cpp in Sources */,
+				96FFDC8429144730008C85B8 /* PowerDevice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,20 +397,28 @@
 		964D36002914172500ABC3A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 937Z4C38W5;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
 		964D36012914172500ABC3A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 937Z4C38W5;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

@@ -2,13 +2,16 @@
 //  main.cpp
 //  Loboard
 //
-//  Created by Даня Демидов on 03.11.22.
+//  Created by Dan Demidov on 03.11.22.
 //
 
 #include <iostream>
+#include "Application.hpp"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main(int argc, const char * argv[])
+{
+    Application* app = Application::getInstance();
+    app->run();
+    delete app;
     return 0;
 }
