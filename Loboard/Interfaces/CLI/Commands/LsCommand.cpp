@@ -2,17 +2,17 @@
 // Created by Dan Demidov on 06.11.22.
 //
 
-#include "ListdCommand.hpp"
+#include "LsCommand.hpp"
 #include "Board.hpp"
 #include "../CommandLineInterface.hpp"
 
-ListdCommand::ListdCommand(CommandLineInterface *commandLineInterface, std::string keyword) : Command(
+LsCommand::LsCommand(CommandLineInterface *commandLineInterface, std::string keyword) : Command(
     commandLineInterface, std::move(keyword))
 {
 
 }
 
-bool ListdCommand::Handle(const std::string &cmd)
+bool LsCommand::Handle(const std::string &cmd)
 {
     Board* board = interface->GetBoard();
     uint8_t dCount = board->GetDevicesCount();
@@ -20,6 +20,11 @@ bool ListdCommand::Handle(const std::string &cmd)
     for (uint8_t deviceID = 0; deviceID < dCount; ++deviceID)
     {
         Device* d = board->GetDevice(deviceID);
+
+        if (d == nullptr)
+        {
+            continue;
+        }
 
         std::string response;
         if (d->IsBlocked())

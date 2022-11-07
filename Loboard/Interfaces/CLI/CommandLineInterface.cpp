@@ -7,19 +7,23 @@
 
 #include "CommandLineInterface.hpp"
 #include "Commands/Command.hpp"
-#include "CLI/Commands/ListdCommand.hpp"
+#include "CLI/Commands/LsCommand.hpp"
 #include "CLI/Commands/ExitCommand.hpp"
 #include "CLI/Commands/NewdCommand.hpp"
+#include "CLI/Commands/RemoveCommand.hpp"
 #include "CLI/Commands/StateCommand.hpp"
+#include "CLI/Commands/WireCommand.hpp"
 
 CommandLineInterface::CommandLineInterface(Board* board)
     : Interface::Interface(board)
 {
     std::vector<Command*> commands = {
-        new ListdCommand(this, "ls"),
+        new LsCommand(this, "ls"),
         new ExitCommand(this, "exit"),
-        new NewdCommand(this, "new"),
+        new NewCommand(this, "new"),
+        new RemoveCommand(this, "rm"),
         new StateCommand(this, "state"),
+        new WireCommand(this, "wire"),
     };
 
     for (Command* cmd : commands)

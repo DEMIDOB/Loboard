@@ -9,6 +9,7 @@
 
 bool AndGateDevice::getNewState(DeviceState in0, DeviceState in1)
 {
+
     return in0 && in1;
 }
 

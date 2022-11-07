@@ -16,7 +16,6 @@ Device::Device(uint8_t id, uint8_t inputsCount)
 {
     this->id = id;
     this->inputsCount = inputsCount;
-    
     initEmpty();
 }
 
@@ -38,7 +37,7 @@ void Device::Move(LBVector dest)
 
 void Device::Update()
 {
-    bool shouldUnblock = AllInputsWired();
+    bool shouldUnblock = AllInputsWired() && IsOutputWired();
     
     for (uint8_t i = 0; i < inputsCount; ++i)
     {
@@ -53,7 +52,7 @@ void Device::Update()
         }
     }
     
-    if (shouldUnblock)
+    if (blocked && shouldUnblock)
     {
         unblock();
     }
@@ -71,7 +70,7 @@ void Device::PropagateState()
 
 bool Device::IsBlocked()
 {
-    return !editable /*|| !id*/;
+    return !blocked /*|| !id*/;
 }
 
 uint8_t Device::GetID()
@@ -155,7 +154,7 @@ void Device::setState(DeviceState newState)
 {
     if (IsBlocked())
     {
-        ERR("Tried to set state for a blocked device!");
+//        ERR("Tried to set state for a blocked device " << static_cast<int>(GetID()));
         return;
     }
     
@@ -168,16 +167,22 @@ void Device::toggleState()
     setState(!this->state);
 }
 
-void Device::block()
+void Device::block(bool req)
 {
-    editable = false;
-    PropagateState();
+    blocked = false;
+    if (req)
+    {
+        PropagateState();
+    }
 }
 
-void Device::unblock()
+void Device::unblock(bool req)
 {
-    editable = true;
-    PropagateState();
+    blocked = true;
+    if (req)
+    {
+        PropagateState();
+    }
 }
 
 void Device::setName(std::string name)
@@ -189,18 +194,21 @@ void Device::initEmpty()
 {
     this->boxSize = nullLBVector();
     this->position = nullLBVector();
-    this->editable = true;
+    this->blocked = true;
     this->name = "Device";
     this->output = nullptr;
-    
-    if (this->inputsCount > 0)
+
+    this->inputs = static_cast<DirectionedWire **>(malloc(inputsCount * sizeof(DirectionedWire *)));
+
+    for (int i = 0; i < inputsCount; ++i)
     {
-        this->inputs = new DirectionedWire*[this->inputsCount];
-        for (uint8_t i = 0; i < inputsCount; ++i)
-        {
-            inputs[i] = nullptr;
-        }
+        this->inputs[i] = nullptr;
     }
+}
+
+bool Device::IsOutputWired()
+{
+    return output != nullptr;
 }
 
 DirectionedWire::DirectionedWire(Device* src, Device* dest, uint8_t destPort)
@@ -218,8 +226,16 @@ DirectionedWire::DirectionedWire(Device* src, Device* dest, uint8_t destPort)
     
     src->output = this;
     dest->inputs[destPort] = this;
-    
-    Transmit();
+
+    if (dest->AllInputsWired())
+    {
+        dest->blocked = true;
+    }
+
+    this->src = src;
+    this->dest = dest;
+
+    this->src->Update();
 }
 
 DirectionedWire::~DirectionedWire()
@@ -248,8 +264,8 @@ bool DirectionedWire::IsBlocked()
     {
         return false;
     }
-    
-    return src->IsBlocked();
+
+    return src->IsBlocked();;
 }
 
 Device* DirectionedWire::GetSrc()

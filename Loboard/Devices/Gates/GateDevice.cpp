@@ -15,19 +15,29 @@ GateDevice::GateDevice(uint8_t id)
 
 void GateDevice::Update()
 {
-    if (AllInputsWired())
+    DeviceState in0 = false;
+    if (IsInputWired(0))
     {
-        DeviceState in0 = getInputDevice(0)->GetState();
-        DeviceState in1 = getInputDevice(1)->GetState();
-        
-        setState(getNewState(in0, in1));
-        Device::Update();
+        in0 = getInputDevice(0)->GetState();
+    }
+
+    DeviceState in1 = false;
+    if (IsInputWired(1))
+    {
+        in1 = getInputDevice(1)->GetState();
+    }
+
+    if (IsOutputWired())
+    {
+        unblock(false);
     }
     else
     {
-        block();
+        block(false);
     }
-        
+
+    setState(getNewState(in0, in1));
+    Device::Update();
 }
 
 bool GateDevice::getNewState(DeviceState in0, DeviceState in1)

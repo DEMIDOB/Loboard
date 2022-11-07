@@ -15,7 +15,7 @@ class AndGateDevice: public GateDevice
 public:
     explicit AndGateDevice(uint8_t id);
 protected:
-    bool getNewState(DeviceState in0, DeviceState in1);
+    bool getNewState(DeviceState in0, DeviceState in1) override;
 };
 
 #endif /* AndGateDevice_hpp */

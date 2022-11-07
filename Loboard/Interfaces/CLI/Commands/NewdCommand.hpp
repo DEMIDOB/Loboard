@@ -8,10 +8,10 @@
 
 #include "Command.hpp"
 
-class NewdCommand: public Command
+class NewCommand: public Command
 {
 public:
-    NewdCommand(CommandLineInterface* interface, std::string keyword);
+    NewCommand(CommandLineInterface* interface, std::string keyword);
     bool Handle(const std::string& cmd) override;
 };
 

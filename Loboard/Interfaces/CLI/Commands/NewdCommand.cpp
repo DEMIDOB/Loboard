@@ -6,13 +6,13 @@
 #include "../CommandLineInterface.hpp"
 #include "Devices.hpp"
 
-NewdCommand::NewdCommand(CommandLineInterface *interface, std::string keyword) : Command(interface,
-                                                                                         std::move(keyword))
+NewCommand::NewCommand(CommandLineInterface *interface, std::string keyword) : Command(interface,
+                                                                                       std::move(keyword))
 {
 
 }
 
-bool NewdCommand::Handle(const std::string &cmd)
+bool NewCommand::Handle(const std::string &cmd)
 {
     if (cmd.size() <= keyword.size() + 1)
     {

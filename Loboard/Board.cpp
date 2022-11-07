@@ -44,7 +44,8 @@ uint8_t Board::AddDevice(Device* device)
         ERR("Trying to add an already existing device")
         return 0;
     }
-    
+
+    // TODO: fix fragmentation
     uint8_t newDeviceID = this->devicesCount++;
     device->AssignID(newDeviceID);
     devices.push_back(device);
@@ -69,4 +70,27 @@ DirectionedWire* Board::Wire(uint8_t srcId, uint8_t destId, uint8_t destPort)
     }
     
     return new DirectionedWire(src, dest, destPort);
+}
+
+bool Board::RemoveDevice(uint8_t id)
+{
+    for (uint8_t pid : protectedDevicesIDs)
+    {
+        if (pid == id)
+        {
+            return false;
+        }
+    }
+
+    Device* requestedDevice = GetDevice(id);
+
+    if (requestedDevice == nullptr)
+    {
+        return false;
+    }
+
+    devices[id] = nullptr;
+    delete requestedDevice;
+
+    return true;
 }

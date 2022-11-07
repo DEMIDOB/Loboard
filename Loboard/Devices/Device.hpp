@@ -46,6 +46,7 @@ public:
     uint8_t      GetInputsCount();
     bool         DoesInputExist(uint8_t inputIdx);
     bool         IsInputWired(uint8_t inputIdx);
+    bool         IsOutputWired();
 //    bool         SetInput(uint8_t inputIdx, Device* device);
     bool         AllInputsWired();
     
@@ -57,8 +58,8 @@ public:
 protected:
     void         setState(DeviceState);
     void         toggleState();
-    void         block();
-    void         unblock();
+    void         block(bool req = true);
+    void         unblock(bool req = true);
     
     Device*      getInputDevice(uint8_t inputIdx);
     
@@ -76,7 +77,7 @@ private:
     LBVector boxSize;
     LBVector position;
     
-    DeviceState editable;
+    DeviceState blocked;
     DeviceState state;
     
     DirectionedWire* output;
@@ -99,7 +100,7 @@ public:
     bool IsBlocked();
     
     Device* GetSrc();
-    
+
     void Transmit();
 };
 

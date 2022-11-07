@@ -7,7 +7,7 @@
 [x] OR
 [x] board's wire devices method
 [x] state command
-[ ] wire command
+[x] wire command
 
 [ ] NAND
 [ ] NOR
