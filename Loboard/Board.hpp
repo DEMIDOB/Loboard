@@ -35,7 +35,7 @@ public:
     uint8_t AddDevice(Device*);
     bool RemoveDevice(uint8_t);
 
-    DirectionedWire* Wire(uint8_t src, uint8_t dest, uint8_t destPort);
+    Wire* Wire(uint8_t src, uint8_t dest, uint8_t destPort);
 };
 
 #endif /* Board_hpp */

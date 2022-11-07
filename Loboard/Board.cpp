@@ -6,6 +6,7 @@
 //
 
 #include "Board.hpp"
+#include "../Wire.hpp"
 
 Board::Board()
 {
@@ -54,7 +55,7 @@ uint8_t Board::AddDevice(Device* device)
 }
 
 
-DirectionedWire* Board::Wire(uint8_t srcId, uint8_t destId, uint8_t destPort)
+Wire* Board::Wire(uint8_t srcId, uint8_t destId, uint8_t destPort)
 {
     Device* src  = GetDevice(srcId);
     Device* dest = GetDevice(destId);
@@ -69,7 +70,7 @@ DirectionedWire* Board::Wire(uint8_t srcId, uint8_t destId, uint8_t destPort)
         return nullptr;
     }
     
-    return new DirectionedWire(src, dest, destPort);
+    return new Wire(src, dest, destPort);
 }
 
 bool Board::RemoveDevice(uint8_t id)

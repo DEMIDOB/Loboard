@@ -15,13 +15,13 @@
 #define DEVICE_ON  1
 #define DEVICE_OFF 0
 
-#define p_DW DirectionedWire*
+#define p_DW Wire*
 
 //#include "Wire.hpp"
 #include "../Logger.hpp"
 
 typedef bool DeviceState;
-class DirectionedWire;
+class Wire;
 
 class Device {
 public:
@@ -72,7 +72,7 @@ private:
     std::string name;
     
     uint8_t inputsCount = 0;
-    DirectionedWire** inputs;
+    Wire** inputs;
     
     LBVector boxSize;
     LBVector position;
@@ -80,28 +80,7 @@ private:
     DeviceState blocked;
     DeviceState state;
     
-    DirectionedWire* output;
-};
-
-
-class DirectionedWire
-{
-protected:
-    Device* src;
-    Device* dest;
-    uint8_t destPort;
-
-    DeviceState previouslyTransmittedState;
-public:
-    DirectionedWire(Device* src, Device* dest, uint8_t destPort);
-    ~DirectionedWire();
-    
-    bool IsReady();
-    bool IsBlocked();
-    
-    Device* GetSrc();
-
-    void Transmit();
+    Wire* output;
 };
 
 #endif /* Device_hpp */

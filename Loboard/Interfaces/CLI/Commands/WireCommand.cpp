@@ -26,7 +26,7 @@ bool WireCommand::Handle(const std::string &cmd)
     uint8_t destId   = std::stoi(args.argv[2]);
     uint8_t destPort = std::stoi(args.argv[3]);
 
-    DirectionedWire* newWire = interface->GetBoard()->Wire(srcId, destId, destPort);
+    Wire* newWire = interface->GetBoard()->Wire(srcId, destId, destPort);
 
     if (newWire == nullptr)
     {
