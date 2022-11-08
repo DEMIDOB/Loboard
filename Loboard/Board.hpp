@@ -18,7 +18,7 @@ static const uint8_t protectedDevicesIDs[] = {0}; // these can not be deleted
 class Board
 {
 private:
-    uint8_t devicesCount = 0;
+//    uint8_t devicesCount = 0;
     std::vector<Device*> devices;
     
     GroundDevice* ground;
@@ -35,7 +35,7 @@ public:
     uint8_t AddDevice(Device*);
     bool RemoveDevice(uint8_t);
 
-    Wire* Wire(uint8_t src, uint8_t dest, uint8_t destPort);
+    DirectionalWire* Wire(uint8_t src, uint8_t dest, uint8_t destPort);
 };
 
 #endif /* Board_hpp */

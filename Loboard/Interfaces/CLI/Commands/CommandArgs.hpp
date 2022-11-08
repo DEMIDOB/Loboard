@@ -14,6 +14,11 @@ struct CommandArgs
 {
     uint8_t argc;
     std::vector<std::string> argv;
+
+    std::string operator[](size_t idx)
+    {
+        return argv[idx];
+    }
 };
 
 #endif //LOBOARD_COMMANDARGS_HPP

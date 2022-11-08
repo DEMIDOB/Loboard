@@ -1,5 +1,5 @@
 //
-//  Wire.hpp
+//  DirectionalWire.hpp
 //  Loboard
 //
 //  Created by Dan Demidov on 03.11.22.
@@ -13,7 +13,7 @@
 typedef bool DeviceState;
 class Device;
 
-class Wire
+class DirectionalWire
 {
 protected:
     Device* src;
@@ -22,8 +22,8 @@ protected:
 
     DeviceState previouslyTransmittedState;
 public:
-    Wire(Device* src, Device* dest, uint8_t destPort);
-    ~Wire();
+    DirectionalWire(Device* src, Device* dest, uint8_t destPort);
+    ~DirectionalWire();
 
     bool IsReady();
     bool IsBlocked();

@@ -15,13 +15,12 @@
 #define DEVICE_ON  1
 #define DEVICE_OFF 0
 
-#define p_DW Wire*
+#define p_DW DirectionalWire*
 
-//#include "Wire.hpp"
 #include "../Logger.hpp"
 
 typedef bool DeviceState;
-class Wire;
+class DirectionalWire;
 
 class Device {
 public:
@@ -29,7 +28,7 @@ public:
     Device(uint8_t id, uint8_t inputsCount);
     ~Device();
     
-    friend class DirectionedWire;
+    friend class DirectionalWire;
     
     void         AssignID(uint8_t id);
     
@@ -54,7 +53,9 @@ public:
     DeviceState  GetState();
     
     std::string  GetName();
-    
+
+    explicit operator std::basic_string<char>();
+
 protected:
     void         setState(DeviceState);
     void         toggleState();
@@ -72,7 +73,7 @@ private:
     std::string name;
     
     uint8_t inputsCount = 0;
-    Wire** inputs;
+    DirectionalWire** inputs;
     
     LBVector boxSize;
     LBVector position;
@@ -80,7 +81,7 @@ private:
     DeviceState blocked;
     DeviceState state;
     
-    Wire* output;
+    DirectionalWire* output;
 };
 
 #endif /* Device_hpp */

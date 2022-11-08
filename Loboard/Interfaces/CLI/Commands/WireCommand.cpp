@@ -16,7 +16,7 @@ bool WireCommand::Handle(const std::string &cmd)
     CommandArgs args;
     Command::decompose(cmd, &args);
 
-    if (args.argc < 4)
+    if (args.argc < 3)
     {
         CLI_OUT("Not enough arguments!");
         return true;
@@ -24,9 +24,14 @@ bool WireCommand::Handle(const std::string &cmd)
 
     uint8_t srcId    = std::stoi(args.argv[1]);
     uint8_t destId   = std::stoi(args.argv[2]);
-    uint8_t destPort = std::stoi(args.argv[3]);
+    uint8_t destPort = 0;
 
-    Wire* newWire = interface->GetBoard()->Wire(srcId, destId, destPort);
+    if (args.argc > 3)
+    {
+        destPort = std::stoi(args.argv[3]);
+    }
+
+    DirectionalWire* newWire = interface->GetBoard()->Wire(srcId, destId, destPort);
 
     if (newWire == nullptr)
     {

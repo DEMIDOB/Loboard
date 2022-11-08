@@ -24,8 +24,8 @@ add_executable(Loboard
         Devices/GroundDevice.hpp
         Devices/PowerDevice.cpp
         Devices/PowerDevice.hpp
-        Devices/Wire.cpp
-        Devices/Wire.hpp
+        Devices/DirectionalWire.cpp
+        Devices/DirectionalWire.hpp
         Interfaces/CLI/CommandLineInterface.cpp
         Interfaces/CLI/CommandLineInterface.hpp
         Interfaces/Interface.cpp

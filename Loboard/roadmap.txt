@@ -9,9 +9,9 @@
 [x] state command
 [x] wire command
 
-[ ] device's string repr
-[ ] output ^ on handling the "new" command
-[ ] fix crash on rewiring
+[x] device's string repr
+[x] output ^ on handling the "new" command
+[x] fix crash on rewiring
 
 [ ] NAND
 [ ] NOR

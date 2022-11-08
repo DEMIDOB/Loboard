@@ -26,14 +26,7 @@ bool LsCommand::Handle(const std::string &cmd)
             continue;
         }
 
-        std::string response;
-        if (d->IsBlocked())
-        {
-            response.append("!"); // prefix indicating that the device is blocked
-        }
-        response += "[#" + std::to_string(deviceID) + " " + d->GetName() + "]";
-
-        CLI_OUT(response)
+        CLI_OUT(std::basic_string<char>(*d));
     }
 
     return true;

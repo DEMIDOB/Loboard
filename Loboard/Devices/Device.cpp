@@ -6,7 +6,7 @@
 //
 
 #include "Device.hpp"
-#include "Wire.hpp"
+#include "DirectionalWire.hpp"
 
 Device::Device()
 {
@@ -79,7 +79,7 @@ uint8_t Device::GetID()
     return this->id;
 }
 
-Wire* Device::GetOutput()
+DirectionalWire* Device::GetOutput()
 {
     return output;
 }
@@ -199,7 +199,7 @@ void Device::initEmpty()
     this->name = "Device";
     this->output = nullptr;
 
-    this->inputs = static_cast<Wire **>(malloc(inputsCount * sizeof(Wire *)));
+    this->inputs = static_cast<DirectionalWire **>(malloc(inputsCount * sizeof(DirectionalWire *)));
 
     for (int i = 0; i < inputsCount; ++i)
     {
@@ -210,4 +210,22 @@ void Device::initEmpty()
 bool Device::IsOutputWired()
 {
     return output != nullptr;
+}
+
+Device::operator std::basic_string<char>()
+{
+    std::string repr;
+    std::string prefix = " ";
+
+    if (IsBlocked())
+    {
+        prefix = "!"; // prefix indicating that the device is blocked
+    }
+
+    repr += "[#" + std::to_string(id) + " " + GetName() + "]";
+
+//    TODO: repr inputs & outputs
+//    std::string inputs;
+
+    return prefix + repr;
 }

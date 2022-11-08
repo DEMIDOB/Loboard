@@ -1,14 +1,14 @@
 //
-//  Wire.cpp
+//  DirectionalWire.cpp
 //  Loboard
 //
 //  Created by Dan Demidov on 03.11.22.
 //
 
-#include "Wire.hpp"
+#include "DirectionalWire.hpp"
 #include "Device.hpp"
 
-Wire::Wire(Device* src, Device* dest, uint8_t destPort)
+DirectionalWire::DirectionalWire(Device* src, Device* dest, uint8_t destPort)
     : src(src)
 {
     if (src->GetOutput() != nullptr)
@@ -35,7 +35,7 @@ Wire::Wire(Device* src, Device* dest, uint8_t destPort)
     this->src->Update();
 }
 
-Wire::~Wire()
+DirectionalWire::~DirectionalWire()
 {
     if (IsReady())
     {
@@ -45,7 +45,7 @@ Wire::~Wire()
     }
 }
 
-bool Wire::IsReady()
+bool DirectionalWire::IsReady()
 {
     if (src == nullptr || dest == nullptr)
     {
@@ -55,7 +55,7 @@ bool Wire::IsReady()
     return src->output == this && dest->DoesInputExist(destPort);
 }
 
-bool Wire::IsBlocked()
+bool DirectionalWire::IsBlocked()
 {
     if (src == nullptr)
     {
@@ -65,12 +65,12 @@ bool Wire::IsBlocked()
     return src->IsBlocked();;
 }
 
-Device* Wire::GetSrc()
+Device* DirectionalWire::GetSrc()
 {
     return src;
 }
 
-void Wire::Transmit()
+void DirectionalWire::Transmit()
 {
     DeviceState newInputState = src->GetState();
 

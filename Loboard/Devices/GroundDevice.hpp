@@ -19,7 +19,7 @@ public:
     void Update();
     
 private:
-    std::vector<Wire*> inputs;
+    std::vector<DirectionalWire*> inputs;
 };
 
 #endif /* GroundDevice_hpp */

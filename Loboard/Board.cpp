@@ -6,11 +6,11 @@
 //
 
 #include "Board.hpp"
-#include "../Wire.hpp"
+#include "../DirectionalWire.hpp"
 
 Board::Board()
 {
-    ground = new GroundDevice(this->devicesCount++);
+    ground = new GroundDevice(0);
     devices.push_back(ground);
 }
 
@@ -24,12 +24,12 @@ Board::~Board()
 
 uint8_t Board::GetDevicesCount()
 {
-    return this->devicesCount;
+    return devices.size();
 }
 
 Device* Board::GetDevice(uint8_t id)
 {
-    if (id >= devicesCount)
+    if (id >= devices.size())
     {
         LOG("Tried to access an unexisting Device!")
         return nullptr;
@@ -47,15 +47,22 @@ uint8_t Board::AddDevice(Device* device)
     }
 
     // TODO: fix fragmentation
-    uint8_t newDeviceID = this->devicesCount++;
+    uint8_t newDeviceID = 0;
+    while (++newDeviceID < devices.size() && devices[newDeviceID] != nullptr);
+
+    while (devices.size() <= newDeviceID)
+    {
+        devices.push_back(nullptr);
+    }
+
     device->AssignID(newDeviceID);
-    devices.push_back(device);
-    
+    devices[newDeviceID] = device;
+
     return newDeviceID;
 }
 
 
-Wire* Board::Wire(uint8_t srcId, uint8_t destId, uint8_t destPort)
+DirectionalWire* Board::Wire(uint8_t srcId, uint8_t destId, uint8_t destPort)
 {
     Device* src  = GetDevice(srcId);
     Device* dest = GetDevice(destId);
@@ -70,7 +77,7 @@ Wire* Board::Wire(uint8_t srcId, uint8_t destId, uint8_t destPort)
         return nullptr;
     }
     
-    return new Wire(src, dest, destPort);
+    return new DirectionalWire(src, dest, destPort);
 }
 
 bool Board::RemoveDevice(uint8_t id)
