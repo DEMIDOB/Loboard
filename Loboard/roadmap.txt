@@ -15,6 +15,9 @@
 
 [X] load "programs" from file
 
+[ ] make GetStateStr a device's public method
+    |
+    V
 [ ] output state    in device's repr
 [ ] ...... ins/outs .. ........ ....
 
