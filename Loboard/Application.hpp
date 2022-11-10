@@ -8,6 +8,8 @@
 #ifndef Application_hpp
 #define Application_hpp
 
+#define SAVE_FILE_MAX_LENGTH 8192
+
 #include <iostream>
 
 #include "Logger.hpp"

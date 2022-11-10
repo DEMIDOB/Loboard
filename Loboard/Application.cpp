@@ -62,11 +62,11 @@ void Application::run()
         if (argv[ai] != nullptr && strcmp(fileArgMark, argv[ai]) == 0 && ai + 1 < argc)
         {
             const char* saveFPath = argv[ai + 1];
-            char* fileDataBuffer = (char*) calloc(512 * 512, 512 * 512);
+            char* fileDataBuffer = (char*) calloc(SAVE_FILE_MAX_LENGTH, SAVE_FILE_MAX_LENGTH);
 
             std::fstream saveFile;
             saveFile.open(saveFPath, std::ios::in);
-            saveFile.read(fileDataBuffer, 512 * 512);
+            saveFile.read(fileDataBuffer, SAVE_FILE_MAX_LENGTH);
             saveFile.close();
 
             running = ((CommandLineInterface*) interface)->HandleCommand(&fileDataBuffer);
