@@ -15,6 +15,9 @@
 
 [X] load "programs" from file
 
+[ ] output state    in device's repr
+[ ] ...... ins/outs .. ........ ....
+
 [ ] NAND
 [ ] NOR
 [ ] XOR
