@@ -56,7 +56,7 @@ bool CommandLineInterface::HandleCommand(char **c_cmd_ptr)
 
     while (++currentEnd < cmd.size())
     {
-        if (cmd[currentEnd] == ';')
+        if (cmd[currentEnd] == ';' || cmd[currentEnd] == '\n')
         {
             std::string sbstr = cmd.substr(currentStart, currentEnd - currentStart);
             commands.push_back(sbstr);
