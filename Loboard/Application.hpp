@@ -22,7 +22,10 @@
 
 class Application {
 protected:
-    Application();
+    int argc;
+    const char** argv;
+
+    Application(int argc, const char** argv);
     bool running;
     
 public:
@@ -31,6 +34,7 @@ public:
     Application(Application& other) = delete;
     void operator=(const Application&) = delete;
     
+    static Application* getInstance(int argc, const char** argv);
     static Application* getInstance();
     void run();
     

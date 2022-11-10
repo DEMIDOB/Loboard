@@ -8,9 +8,9 @@
 #include <iostream>
 #include "Application.hpp"
 
-int main(int argc, const char * argv[])
+int main(int argc, const char** argv)
 {
-    Application* app = Application::getInstance();
+    Application* app = Application::getInstance(argc, argv);
     app->run();
     delete app;
     return 0;

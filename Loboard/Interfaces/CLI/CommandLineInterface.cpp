@@ -5,6 +5,8 @@
 //  Created by Dan Demidov on 04.11.22.
 //
 
+#include <fstream>
+
 #include "CommandLineInterface.hpp"
 #include "Commands/Command.hpp"
 #include "CLI/Commands/LsCommand.hpp"
@@ -36,23 +38,55 @@ bool CommandLineInterface::Update()
 {
     std::cout << std::endl << " >> ";
 
-    std::string cmd;
     char *c_cmd = new char[MAX_INPUT_SIZE];
     std::cin.getline(c_cmd, MAX_INPUT_SIZE);
 
-    cmd = std::string(c_cmd);
+    bool cmdHandleResult = HandleCommand(&c_cmd);
     delete[] c_cmd;
 
-    std::string keyword = cmd.substr(0, cmd.find(' '));
-    
-    if (commandsMap.count(keyword))
+    return cmdHandleResult;
+}
+
+bool CommandLineInterface::HandleCommand(char **c_cmd_ptr)
+{
+    std::string cmd = std::string(*c_cmd_ptr);
+
+    std::vector<std::string> commands;
+    size_t currentStart = 0, currentEnd = 0;
+
+    while (++currentEnd < cmd.size())
     {
-        return commandsMap[keyword]->Handle(cmd);
+        if (cmd[currentEnd] == ';')
+        {
+            std::string sbstr = cmd.substr(currentStart, currentEnd - currentStart);
+            commands.push_back(sbstr);
+            currentStart = currentEnd;
+
+            while (cmd[currentStart] == ';' || cmd[currentStart] == ' ' || cmd[currentStart] == '\n')
+            {
+                currentStart = ++currentEnd;
+            }
+        }
     }
-    else
+
+    commands.push_back(cmd.substr(currentStart, currentEnd));
+
+    for (std::string currentCommand: commands)
     {
-        std::cout << "Unknown command!" << std::endl;
+        std::string keyword = currentCommand.substr(0, currentCommand.find(' '));
+
+        if (commandsMap.count(keyword))
+        {
+            if (!commandsMap[keyword]->Handle(currentCommand))
+            {
+                return false;
+            }
+        }
+        else
+        {
+            CLI_OUT("Unknown command: \"" << currentCommand << "\"");
+        }
     }
-    
+
     return true;
 }

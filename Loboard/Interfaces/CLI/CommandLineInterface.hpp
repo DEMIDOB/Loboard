@@ -22,8 +22,11 @@ class CommandLineInterface: public Interface
 {
 private:
     std::map<std::string, Command*> commandsMap;
+
 public:
     explicit CommandLineInterface(Board* board);
+
+    bool HandleCommand(char** c_cmd_ptr);
     bool Update() override;
 };
 

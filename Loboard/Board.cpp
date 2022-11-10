@@ -46,7 +46,6 @@ uint8_t Board::AddDevice(Device* device)
         return 0;
     }
 
-    // TODO: fix fragmentation
     uint8_t newDeviceID = 0;
     while (++newDeviceID < devices.size() && devices[newDeviceID] != nullptr);
 
@@ -97,8 +96,8 @@ bool Board::RemoveDevice(uint8_t id)
         return false;
     }
 
-    devices[id] = nullptr;
     delete requestedDevice;
+    devices[id] = nullptr;
 
     return true;
 }

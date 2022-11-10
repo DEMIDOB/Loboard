@@ -1,17 +1,19 @@
-[x] board's add device method
+[X] board's add device method
 
-[x] decide - does input semantics really matter?
-[x] device's indexed (generic) inputs
+[X] decide - does input semantics really matter?
+[X] device's indexed (generic) inputs
 
-[x] AND
-[x] OR
-[x] board's wire devices method
-[x] state command
-[x] wire command
+[X] AND
+[X] OR
+[X] board's wire devices method
+[X] state command
+[X] wire command
 
-[x] device's string repr
-[x] output ^ on handling the "new" command
-[x] fix crash on rewiring
+[X] device's string repr
+[X] output ^ on handling the "new" command
+[X] fix crash on rewiring
+
+[X] load "programs" from file
 
 [ ] NAND
 [ ] NOR
