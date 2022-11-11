@@ -18,10 +18,7 @@ public:
     explicit GroundDevice(uint8_t id);
     ~GroundDevice();
     
-    void Update();
-    
-private:
-    std::vector<DirectionalWire*> inputs;
+    void Update() override;
 };
 
 #endif /* GroundDevice_hpp */
