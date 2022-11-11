@@ -15,11 +15,19 @@
 
 [X] load "programs" from file
 
+[X] CRASH on prog1 + rm 1; rm 2
+[X] 128 ground input ports
+
+[ ] command return stack
+[ ] variables to store returned values
+[ ] comments in commands?
+
 [ ] make GetStateStr a device's public method
     |
     V
 [ ] output state    in device's repr
 [ ] ...... ins/outs .. ........ ....
+
 
 [ ] NAND
 [ ] NOR

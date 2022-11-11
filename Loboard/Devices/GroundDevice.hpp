@@ -8,6 +8,8 @@
 #ifndef GroundDevice_hpp
 #define GroundDevice_hpp
 
+#define GROUND_INPUTS_COUNT 128
+
 #include <vector>
 #include "Device.hpp"
 

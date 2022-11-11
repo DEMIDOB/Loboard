@@ -1,5 +1,7 @@
 new power 2
-rm 1
 new or
-wire 1 0
-wire 2 1; ls
+new and
+
+wire 3 0 0
+wire 4 0 1
+

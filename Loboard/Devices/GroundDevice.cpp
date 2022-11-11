@@ -7,7 +7,7 @@
 
 #include "GroundDevice.hpp"
 
-GroundDevice::GroundDevice(uint8_t id) : Device(id, 1)
+GroundDevice::GroundDevice(uint8_t id) : Device(id, GROUND_INPUTS_COUNT)
 {
     setState(DEVICE_OFF);
     block();

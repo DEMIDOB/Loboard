@@ -23,6 +23,12 @@ Device::Device(uint8_t id, uint8_t inputsCount)
 Device::~Device()
 {
     delete output;
+
+    for (size_t i = 0; i < inputsCount; ++i)
+    {
+        delete *(inputs + i);
+    }
+
     delete[] inputs;
 }
 
