@@ -2,20 +2,20 @@
 // Created by Dan Demidov on 06.11.22.
 //
 
-#include "Command.hpp"
+#include "CommandHandler.hpp"
 #include "../CommandLineInterface.hpp"
 
 #include <utility>
 
-const std::string &Command::GetKeyword() const
+const std::string &CommandHandler::GetKeyword() const
 {
     return keyword;
 }
 
-Command::Command(CommandLineInterface *const commandLineInterface, std::string keyword)
+CommandHandler::CommandHandler(CommandLineInterface *const commandLineInterface, std::string keyword)
     : interface(commandLineInterface), keyword(std::move(keyword)) {}
 
-void Command::decompose(const std::string& cmd, CommandArgs* args)
+void CommandHandler::decompose(const std::string& cmd, CommandArgs* args)
 {
     std::string currentString;
     *args = CommandArgs{0, {}};
@@ -24,6 +24,11 @@ void Command::decompose(const std::string& cmd, CommandArgs* args)
     {
         if (c == ' ' && !currentString.empty())
         {
+            if (interface->variables.Has(currentString))
+            {
+                currentString = interface->variables.Get(currentString);
+            }
+
             args->argv.push_back(currentString);
             (args->argc)++;
             currentString = "";
@@ -35,6 +40,11 @@ void Command::decompose(const std::string& cmd, CommandArgs* args)
 
     if (!currentString.empty())
     {
+        if (interface->variables.Has(currentString))
+        {
+            currentString = interface->variables.Get(currentString);
+        }
+
         args->argv.push_back(currentString);
         (args->argc)++;
     }

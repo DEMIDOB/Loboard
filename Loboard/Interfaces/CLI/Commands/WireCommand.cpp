@@ -5,8 +5,8 @@
 #include "WireCommand.hpp"
 #include "../CommandLineInterface.hpp"
 
-WireCommand::WireCommand(CommandLineInterface *interface, std::string keyword) : Command(interface,
-                                                                                         std::move(keyword))
+WireCommand::WireCommand(CommandLineInterface *interface, std::string keyword) : CommandHandler(interface,
+                                                                                                std::move(keyword))
 {
 
 }
@@ -14,7 +14,7 @@ WireCommand::WireCommand(CommandLineInterface *interface, std::string keyword) :
 bool WireCommand::Handle(const std::string &cmd)
 {
     CommandArgs args;
-    Command::decompose(cmd, &args);
+    CommandHandler::decompose(cmd, &args);
 
     if (args.argc < 3)
     {
@@ -24,16 +24,27 @@ bool WireCommand::Handle(const std::string &cmd)
 
     uint8_t srcId    = std::stoi(args.argv[1]);
     uint8_t destId   = std::stoi(args.argv[2]);
-    uint8_t destPort = 0;
+
+    Device* requestedDestDevice = interface->GetBoard()->GetDevice(destId);
+    if (requestedDestDevice == nullptr)
+    {
+        CLI_OUT("Could not find device with id #" << destId);
+        return true;
+    }
+
+    uint8_t destPort = requestedDestDevice->GetNextInputID();
 
     if (args.argc > 3)
     {
         destPort = std::stoi(args.argv[3]);
     }
+    else if (destPort < 0)
+    {
+        CLI_OUT("Could not wire requested devices: all the inputs are already wired");
+        return false;
+    }
 
-    DirectionalWire* newWire = interface->GetBoard()->Wire(srcId, destId, destPort);
-
-    if (newWire == nullptr)
+    if (interface->GetBoard()->Wire(srcId, destId, destPort) == nullptr)
     {
         CLI_OUT("Could not wire requested devices: check the correctness of the ids and/or the destination port");
         return true;

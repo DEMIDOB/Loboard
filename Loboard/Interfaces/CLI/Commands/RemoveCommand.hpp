@@ -5,9 +5,9 @@
 #ifndef LOBOARD_REMOVECOMMAND_HPP
 #define LOBOARD_REMOVECOMMAND_HPP
 
-#include "Command.hpp"
+#include "CommandHandler.hpp"
 
-class RemoveCommand: public Command
+class RemoveCommand: public CommandHandler
 {
 public:
     RemoveCommand(CommandLineInterface* interface, std::string keyword);

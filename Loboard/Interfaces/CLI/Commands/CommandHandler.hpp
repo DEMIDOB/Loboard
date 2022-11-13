@@ -2,8 +2,8 @@
 // Created by Dan Demidov on 06.11.22.
 //
 
-#ifndef LOBOARD_COMMAND_HPP
-#define LOBOARD_COMMAND_HPP
+#ifndef LOBOARD_COMMANDHANDLER_HPP
+#define LOBOARD_COMMANDHANDLER_HPP
 
 class CommandLineInterface;
 
@@ -17,19 +17,19 @@ class CommandLineInterface;
 
 class CommandLineInterface;
 
-class Command
+class CommandHandler
 {
 protected:
     std::string keyword;
     CommandLineInterface *const interface;
 
-    static void decompose(const std::string&, CommandArgs*);
+    void decompose(const std::string&, CommandArgs*);
 public:
     const std::string &GetKeyword() const;
 
-    Command(CommandLineInterface *commandLineInterface, std::string keyword);
+    CommandHandler(CommandLineInterface *commandLineInterface, std::string keyword);
     virtual bool Handle(const std::string& cmd) = 0;
 };
 
 
-#endif //LOBOARD_COMMAND_HPP
+#endif //LOBOARD_COMMANDHANDLER_HPP

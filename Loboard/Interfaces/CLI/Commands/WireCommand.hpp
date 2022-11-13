@@ -5,9 +5,9 @@
 #ifndef LOBOARD_WIRECOMMAND_HPP
 #define LOBOARD_WIRECOMMAND_HPP
 
-#include "Command.hpp"
+#include "CommandHandler.hpp"
 
-class WireCommand: public Command
+class WireCommand: public CommandHandler
 {
 public:
     WireCommand(CommandLineInterface* interface, std::string keyword);

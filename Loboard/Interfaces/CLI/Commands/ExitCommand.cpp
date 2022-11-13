@@ -4,8 +4,8 @@
 
 #include "ExitCommand.hpp"
 
-ExitCommand::ExitCommand(CommandLineInterface *interface, std::string keyword) : Command(interface,
-                                                                                         std::move(keyword))
+ExitCommand::ExitCommand(CommandLineInterface *interface, std::string keyword) : CommandHandler(interface,
+                                                                                                std::move(keyword))
 {
 
 }

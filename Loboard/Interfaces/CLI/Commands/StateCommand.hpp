@@ -6,9 +6,9 @@
 #define LOBOARD_STATECOMMAND_HPP
 
 
-#include "Command.hpp"
+#include "CommandHandler.hpp"
 
-class StateCommand: public Command
+class StateCommand: public CommandHandler
 {
 public:
     StateCommand(CommandLineInterface* interface, std::string keyword);

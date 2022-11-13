@@ -6,9 +6,9 @@
 #define LOBOARD_LSCOMMAND_HPP
 
 
-#include "Command.hpp"
+#include "CommandHandler.hpp"
 
-class LsCommand: public Command
+class LsCommand: public CommandHandler
 {
 public:
     LsCommand(CommandLineInterface *commandLineInterface, std::string keyword);

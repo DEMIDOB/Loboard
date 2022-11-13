@@ -7,8 +7,8 @@
 #include "../CommandLineInterface.hpp"
 
 StateCommand::StateCommand(CommandLineInterface *interface, std::string keyword)
-    : Command(interface,
-              std::move(keyword))
+    : CommandHandler(interface,
+                     std::move(keyword))
 {
 
 }
@@ -16,7 +16,7 @@ StateCommand::StateCommand(CommandLineInterface *interface, std::string keyword)
 bool StateCommand::Handle(const std::string &cmd)
 {
     CommandArgs args;
-    Command::decompose(cmd, &args);
+    CommandHandler::decompose(cmd, &args);
 
     if (args.argc < 2)
     {

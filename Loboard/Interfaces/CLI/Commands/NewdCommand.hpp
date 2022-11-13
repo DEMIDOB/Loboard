@@ -6,9 +6,9 @@
 #define LOBOARD_NEWDCOMMAND_HPP
 
 
-#include "Command.hpp"
+#include "CommandHandler.hpp"
 
-class NewCommand: public Command
+class NewCommand: public CommandHandler
 {
 public:
     NewCommand(CommandLineInterface* interface, std::string keyword);

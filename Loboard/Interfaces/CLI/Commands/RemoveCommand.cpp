@@ -5,8 +5,8 @@
 #include "RemoveCommand.hpp"
 #include "../CommandLineInterface.hpp"
 
-RemoveCommand::RemoveCommand(CommandLineInterface *interface, std::string keyword): Command(interface,
-                                                                                            std::move(keyword))
+RemoveCommand::RemoveCommand(CommandLineInterface *interface, std::string keyword): CommandHandler(interface,
+                                                                                                   std::move(keyword))
 {
 
 }
@@ -14,7 +14,7 @@ RemoveCommand::RemoveCommand(CommandLineInterface *interface, std::string keywor
 bool RemoveCommand::Handle(const std::string &cmd)
 {
     CommandArgs args;
-    Command::decompose(cmd, &args);
+    CommandHandler::decompose(cmd, &args);
 
     if (args.argc < 2)
     {

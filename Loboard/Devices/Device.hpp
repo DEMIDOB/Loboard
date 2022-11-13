@@ -38,7 +38,8 @@ public:
     
     bool         IsBlocked();
     uint8_t      GetID();
-    
+    int          GetNextInputID();
+
     p_DW         GetOutput();
     
     // Inputs

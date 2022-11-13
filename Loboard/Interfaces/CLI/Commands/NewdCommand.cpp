@@ -6,8 +6,8 @@
 #include "../CommandLineInterface.hpp"
 #include "Devices.hpp"
 
-NewCommand::NewCommand(CommandLineInterface *interface, std::string keyword) : Command(interface,
-                                                                                       std::move(keyword))
+NewCommand::NewCommand(CommandLineInterface *interface, std::string keyword) : CommandHandler(interface,
+                                                                                              std::move(keyword))
 {
 
 }
@@ -15,7 +15,7 @@ NewCommand::NewCommand(CommandLineInterface *interface, std::string keyword) : C
 bool NewCommand::Handle(const std::string &cmd)
 {
     CommandArgs args;
-    Command::decompose(cmd, &args);
+    CommandHandler::decompose(cmd, &args);
 
     if (args.argc < 2)
     {
@@ -44,6 +44,9 @@ bool NewCommand::Handle(const std::string &cmd)
         uint8_t newDeviceId = interface->GetBoard()->AddDevice(deviceInitializer(0));
         Device* newDevice = interface->GetBoard()->GetDevice(newDeviceId);
         newDevice->Update();
+
+        std::string newDeviceID_s = std::to_string((int) newDeviceId);
+        interface->PushCommandReturnValue(*this, newDeviceID_s);
 
         CLI_OUT("Created: " << std::basic_string<char>(*newDevice));
     }

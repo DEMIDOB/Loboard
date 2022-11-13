@@ -6,9 +6,9 @@
 #define LOBOARD_EXITCOMMAND_HPP
 
 
-#include "Command.hpp"
+#include "CommandHandler.hpp"
 
-class ExitCommand: public Command
+class ExitCommand: public CommandHandler
 {
 public:
     ExitCommand(CommandLineInterface *interface, std::string keyword);

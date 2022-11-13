@@ -228,10 +228,23 @@ Device::operator std::basic_string<char>()
         prefix = "!"; // prefix indicating that the device is blocked
     }
 
-    repr += "[#" + std::to_string(id) + " " + GetName() + "]";
+    repr += "[#" + std::to_string(id) + " " + GetName() + (GetState() ? " +" : " -") + "]";
 
 //    TODO: repr inputs & outputs
 //    std::string inputs;
 
     return prefix + repr;
+}
+
+int Device::GetNextInputID()
+{
+    for (int nextInputID = 0; nextInputID < inputsCount; nextInputID++)
+    {
+        if (inputs[nextInputID] == nullptr)
+        {
+            return (int) nextInputID;
+        }
+    }
+
+    return -1;
 }
