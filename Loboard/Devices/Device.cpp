@@ -22,11 +22,25 @@ Device::Device(uint8_t id, uint8_t inputsCount)
 
 Device::~Device()
 {
-    delete output;
+    for (auto& output : outputs)
+    {
+        if (outputs.empty())
+        {
+            break;
+        }
+
+        DirectionalWire* wire_ptr = output.second;
+        delete wire_ptr;
+    }
 
     for (size_t i = 0; i < inputsCount; ++i)
     {
-        delete *(inputs + i);
+        DirectionalWire* input_ptr = *(inputs + i);
+        if (input_ptr == nullptr)
+        {
+            continue;
+        }
+        delete input_ptr;
     }
 
     delete[] inputs;
@@ -37,14 +51,9 @@ void Device::AssignID(uint8_t id)
     this->id = id;
 }
 
-void Device::Move(LBVector dest)
-{
-    this->position = dest;
-}
-
 void Device::Update()
 {
-    bool shouldUnblock = AllInputsWired() && IsOutputWired();
+    bool shouldUnblock = AllInputsWired() && IsAnyOutputWired();
     
     for (uint8_t i = 0; i < inputsCount; ++i)
     {
@@ -59,7 +68,7 @@ void Device::Update()
         }
     }
     
-    if (blocked && shouldUnblock)
+    if (!ready && shouldUnblock)
     {
         unblock();
     }
@@ -69,33 +78,13 @@ void Device::Update()
 
 void Device::PropagateState()
 {
-    if (output != nullptr)
+    for (auto& output: outputs)
     {
-        output->Transmit();
+        output.second->Transmit();
     }
 }
 
-bool Device::IsBlocked()
-{
-    return !blocked /*|| !id*/;
-}
-
-uint8_t Device::GetID()
-{
-    return this->id;
-}
-
-DirectionalWire* Device::GetOutput()
-{
-    return output;
-}
-
-uint8_t Device::GetInputsCount()
-{
-    return this->inputsCount;
-}
-
-bool Device::DoesInputExist(uint8_t inputIdx)
+bool Device::DoesInputExist(uint8_t inputIdx) const
 {
     return inputIdx < inputsCount;
 }
@@ -104,19 +93,6 @@ bool Device::IsInputWired(uint8_t inputIdx)
 {
     return DoesInputExist(inputIdx) && inputs[inputIdx] != nullptr;
 }
-
-//bool Device::SetInput(uint8_t inputIdx, Device *device)
-//{
-//    if (inputIdx >= inputsCount)
-//    {
-//        return false;
-//    }
-//    
-//    inputs[inputIdx] = device;
-//    Update();
-//    
-//    return true;
-//}
 
 bool Device::AllInputsWired()
 {
@@ -135,33 +111,29 @@ Device* Device::getInputDevice(uint8_t inputIdx)
 {
     if (inputIdx >= inputsCount)
     {
-        ERR("Trying to acces an unexisting input!")
+        ERR("Trying to access a non-existing input!")
         return nullptr;
     }
     
     return inputs[inputIdx]->GetSrc();
 }
 
-LBVector Device::GetPosition()
+void Device::unwireInputAtPort(uint8_t inputPort)
 {
-    return this->position;
-}
+    if (inputPort >= inputsCount)
+    {
+        ERR("Trying to access a non-existing input!")
+        return;
+    }
 
-DeviceState Device::GetState()
-{
-    return this->state;
-}
-
-std::string Device::GetName()
-{
-    return this->name;
+    inputs[inputPort] = nullptr;
 }
 
 void Device::setState(DeviceState newState)
 {
     if (IsBlocked())
     {
-//        ERR("Tried to set state for a blocked device " << static_cast<int>(GetID()));
+//        ERR("Tried to set state for a ready device " << static_cast<int>(GetID()));
         return;
     }
     
@@ -169,14 +141,9 @@ void Device::setState(DeviceState newState)
     PropagateState();
 }
 
-void Device::toggleState()
-{
-    setState(!this->state);
-}
-
 void Device::block(bool req)
 {
-    blocked = false;
+    ready = false;
     if (req)
     {
         PropagateState();
@@ -185,7 +152,7 @@ void Device::block(bool req)
 
 void Device::unblock(bool req)
 {
-    blocked = true;
+    ready = true;
     if (req)
     {
         PropagateState();
@@ -199,11 +166,8 @@ void Device::setName(std::string name)
 
 void Device::initEmpty()
 {
-    this->boxSize = nullLBVector();
-    this->position = nullLBVector();
-    this->blocked = true;
+    this->ready = true;
     this->name = "Device";
-    this->output = nullptr;
 
     this->inputs = static_cast<DirectionalWire **>(malloc(inputsCount * sizeof(DirectionalWire *)));
 
@@ -213,19 +177,14 @@ void Device::initEmpty()
     }
 }
 
-bool Device::IsOutputWired()
-{
-    return output != nullptr;
-}
-
-Device::operator std::basic_string<char>()
+Device::operator std::basic_string<char>() const
 {
     std::string repr;
     std::string prefix = " ";
 
     if (IsBlocked())
     {
-        prefix = "!"; // prefix indicating that the device is blocked
+        prefix = "!"; // prefix indicating that the device is ready
     }
 
     repr += "[#" + std::to_string(id) + " " + GetName() + (GetState() ? " +" : " -") + "]";
@@ -236,7 +195,7 @@ Device::operator std::basic_string<char>()
     return prefix + repr;
 }
 
-int Device::GetNextInputID()
+int Device::GetNextInputID() const
 {
     for (int nextInputID = 0; nextInputID < inputsCount; nextInputID++)
     {
@@ -247,4 +206,22 @@ int Device::GetNextInputID()
     }
 
     return -1;
+}
+
+void Device::addOutput(DirectionalWire* newOutputWire)
+{
+    assert(newOutputWire->GetDest() != this);
+    outputs[newOutputWire->GetDest()->id] = newOutputWire;
+    return;
+}
+
+void Device::deleteOutput(DeviceID destID)
+{
+    if (!outputs.count(destID))
+    {
+        return;
+    }
+
+    DirectionalWire* outputWire = outputs[destID];
+    outputs.erase(destID);
 }

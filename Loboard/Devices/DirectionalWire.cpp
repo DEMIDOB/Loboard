@@ -9,11 +9,12 @@
 #include "Device.hpp"
 
 DirectionalWire::DirectionalWire(Device* src, Device* dest, uint8_t destPort)
-    : src(src)
+    : src(src), dest(dest)
 {
-    if (src->GetOutput() != nullptr)
+    if (src->HasOutputToDevice(dest))
     {
-        delete src->output;
+        // TODO: encapsulate
+        src->deleteOutput(dest->id);
     }
 
     if (dest->IsInputWired(destPort))
@@ -21,28 +22,22 @@ DirectionalWire::DirectionalWire(Device* src, Device* dest, uint8_t destPort)
         delete dest->getInputDevice(destPort);
     }
 
-    src->output = this;
+    src->addOutput(this);
     dest->inputs[destPort] = this;
 
-    if (dest->AllInputsWired())
+    // TODO: wtf this does?
+    if (!dest->AllInputsWired())
     {
-        dest->blocked = true;
+        dest->ready = false;
     }
-
-    this->src = src;
-    this->dest = dest;
 
     this->src->Update();
 }
 
 DirectionalWire::~DirectionalWire()
 {
-    if (IsReady())
-    {
-        src->output = nullptr;
-        dest->inputs[destPort] = nullptr;
-        dest->Update();
-    }
+    dest->unwireInputAtPort(destPort);
+    src->deleteOutput(this->dest->id);
 }
 
 bool DirectionalWire::IsReady()
@@ -52,7 +47,7 @@ bool DirectionalWire::IsReady()
         return false;
     }
 
-    return src->output == this && dest->DoesInputExist(destPort);
+    return src->HasOutputToDevice(dest) && dest->DoesInputExist(destPort);
 }
 
 bool DirectionalWire::IsBlocked()
@@ -63,11 +58,6 @@ bool DirectionalWire::IsBlocked()
     }
 
     return src->IsBlocked();;
-}
-
-Device* DirectionalWire::GetSrc()
-{
-    return src;
 }
 
 void DirectionalWire::Transmit()

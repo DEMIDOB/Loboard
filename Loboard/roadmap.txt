@@ -25,7 +25,7 @@
 [X] output state in device's repr
 [X] XOR
 
-[ ] multiple outputs
+[X] multiple outputs
 
 [ ] NAND
 [ ] NOR

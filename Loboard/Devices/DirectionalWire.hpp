@@ -28,7 +28,8 @@ public:
     bool IsReady();
     bool IsBlocked();
 
-    Device* GetSrc();
+    Device* GetSrc() const { return src; }
+    Device* GetDest() const { return dest; }
 
     void Transmit();
 };

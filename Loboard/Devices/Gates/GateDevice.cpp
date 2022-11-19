@@ -27,7 +27,7 @@ void GateDevice::Update()
         in1 = getInputDevice(1)->GetState();
     }
 
-    if (IsOutputWired())
+    if (IsAnyOutputWired())
     {
         unblock(false);
     }

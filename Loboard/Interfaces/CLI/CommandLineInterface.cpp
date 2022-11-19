@@ -33,6 +33,11 @@ CommandLineInterface::CommandLineInterface(Board* board)
         commandsMap[cmd->GetKeyword()] = cmd;
     }
 
+    // make ground accessible via this pre-set variable
+    static std::string groundVariableName = "g";
+    static std::string groundVariableValue = "0";
+    variables.set(groundVariableName, groundVariableValue);
+
 #ifdef _WIN32
     system("cls");
 #else

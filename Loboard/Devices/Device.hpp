@@ -9,80 +9,76 @@
 #define Device_hpp
 
 #include <string>
-
-#include "../LBVector.hpp"
+#include <unordered_map>
 
 #define DEVICE_ON  1
 #define DEVICE_OFF 0
 
-#define p_DW DirectionalWire*
-
 #include "../Logger.hpp"
 
 typedef bool DeviceState;
+typedef uint8_t DeviceID;
+
 class DirectionalWire;
 
 class Device {
 public:
     Device();
-    Device(uint8_t id, uint8_t inputsCount);
+    Device(DeviceID id, uint8_t inputsCount);
     ~Device();
     
     friend class DirectionalWire;
+
+    void         AssignID(DeviceID id);
     
-    void         AssignID(uint8_t id);
-    
-    void         Move(LBVector to);
     virtual void Update();
     void         PropagateState();
     
-    bool         IsBlocked();
-    uint8_t      GetID();
-    int          GetNextInputID();
+    bool         IsBlocked() const { return !ready; }
 
-    p_DW         GetOutput();
+    uint8_t      GetID() const { return id; }
+    int          GetNextInputID() const;
+    DeviceState  GetState() const { return state; }
+    std::string  GetName() const { return name; }
     
     // Inputs
-    uint8_t      GetInputsCount();
-    bool         DoesInputExist(uint8_t inputIdx);
+    uint8_t      GetInputsCount() const { return inputsCount; }
+    bool         DoesInputExist(uint8_t inputIdx) const;
     bool         IsInputWired(uint8_t inputIdx);
-    bool         IsOutputWired();
-//    bool         SetInput(uint8_t inputIdx, Device* device);
     bool         AllInputsWired();
-    
-    LBVector     GetPosition();
-    DeviceState  GetState();
-    
-    std::string  GetName();
 
-    explicit operator std::basic_string<char>();
+    // Outputs
+    inline bool  IsAnyOutputWired() const { return !outputs.empty(); }
+    inline bool  HasOutputToDevice(const Device* device) const { return outputs.count(device->id) == 1; }
+
+    explicit operator std::basic_string<char>() const;
 
 protected:
+    void         setName(std::string);
     void         setState(DeviceState);
-    void         toggleState();
     void         block(bool req = true);
     void         unblock(bool req = true);
-    
-    Device*      getInputDevice(uint8_t inputIdx);
-    
-    void         setName(std::string);
 
+    // Inputs
+    Device*      getInputDevice(uint8_t inputIdx);
+    void         unwireInputAtPort(uint8_t inputPort);
+
+    // Outputs
+    void         addOutput(DirectionalWire* newOutputWire);
+    void         deleteOutput(DeviceID destID);
 private:
     void         initEmpty();
     
-    uint8_t id = 0;
+    DeviceID id = 0;
     std::string name;
     
     uint8_t inputsCount = 0;
     DirectionalWire** inputs;
     
-    LBVector boxSize;
-    LBVector position;
-    
-    DeviceState blocked;
+    DeviceState ready;
     DeviceState state;
     
-    DirectionalWire* output;
+    std::unordered_map<DeviceID, DirectionalWire*> outputs;
 };
 
 #endif /* Device_hpp */
