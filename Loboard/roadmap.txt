@@ -27,6 +27,10 @@
 
 [X] multiple outputs
 
+[ ] message device command:
+    [ ] make every device respond to an empty message with it's repr (which would not change its current behavior)
+    [ ] power's on/off commands
+
 [ ] NAND
 [ ] NOR
 
