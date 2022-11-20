@@ -128,6 +128,7 @@ void Device::unwireInputAtPort(uint8_t inputPort)
     }
 
     inputs[inputPort] = nullptr;
+    Update();
 }
 
 void Device::setState(DeviceState newState)
