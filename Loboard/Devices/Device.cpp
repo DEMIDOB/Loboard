@@ -211,9 +211,10 @@ int Device::GetNextInputID() const
 
 void Device::addOutput(DirectionalWire* newOutputWire)
 {
+#ifdef assert
     assert(newOutputWire->GetDest() != this);
+#endif
     outputs[newOutputWire->GetDest()->id] = newOutputWire;
-    return;
 }
 
 void Device::deleteOutput(DeviceID destID)
