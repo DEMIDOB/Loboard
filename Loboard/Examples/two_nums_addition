@@ -1,0 +1,7 @@
+n1, n2 = new power 2
+l = new and
+r = new xor
+wire l g 
+wire r g
+wire n1 l; wire n1 r 
+wire n2 l; wire n2 r 
