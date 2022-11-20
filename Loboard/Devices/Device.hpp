@@ -51,8 +51,9 @@ public:
     inline bool  IsAnyOutputWired() const { return !outputs.empty(); }
     inline bool  HasOutputToDevice(const Device* device) const { return outputs.count(device->id) == 1; }
 
-    explicit operator std::basic_string<char>() const;
+    virtual void SendMessage(const std::string& message);
 
+    explicit operator std::basic_string<char>() const;
 protected:
     void         setName(std::string);
     void         setState(DeviceState);

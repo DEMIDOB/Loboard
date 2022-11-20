@@ -27,9 +27,9 @@
 
 [X] multiple outputs
 
-[ ] message device command:
-    [ ] make every device respond to an empty message with it's repr (which would not change its current behavior)
-    [ ] power's on/off commands
+[X] message device command:
+    [X] make every device respond to an empty message with it's repr (which would not change its current behavior)
+    [X] power's on/off commands
 
 [ ] refactor for exceptions to find their place in this beautiful codebase ^_^
 

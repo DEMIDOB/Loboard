@@ -1,5 +1,0 @@
-in1, in2 = new power 2
-out0 = new xor
-out1 = new and
-wire out0 0
-wire out1 0

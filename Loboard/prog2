@@ -1,6 +1,0 @@
-p = new power
-a = new and
-wire a g
-wire p a
-wire p a
-rm a

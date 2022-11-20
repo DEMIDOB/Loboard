@@ -7,6 +7,7 @@
 
 #include "Device.hpp"
 #include "DirectionalWire.hpp"
+#include "Exceptions/StringOutputIssued.hpp"
 
 Device::Device()
 {
@@ -224,4 +225,12 @@ void Device::deleteOutput(DeviceID destID)
 
     DirectionalWire* outputWire = outputs[destID];
     outputs.erase(destID);
+}
+
+void Device::SendMessage(const std::string &message)
+{
+    if (message.empty())
+    {
+        throw DeviceExceptions::StringOutputIssued(std::basic_string<char>(*this));
+    }
 }

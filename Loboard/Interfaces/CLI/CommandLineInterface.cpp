@@ -15,6 +15,7 @@
 #include "CLI/Commands/RemoveCommand.hpp"
 #include "CLI/Commands/StateCommand.hpp"
 #include "CLI/Commands/WireCommand.hpp"
+#include "Exceptions/StringOutputIssued.hpp"
 
 CommandLineInterface::CommandLineInterface(Board* board)
     : Interface::Interface(board), variables(SessionVariablesSet())
@@ -98,39 +99,51 @@ bool CommandLineInterface::HandleCommand(char **c_cmd_ptr)
 
         for (const char c : assigmentLeft)
         {
-            if (c != ' ') // sorry for this nested shit, but i thought it would be cleaner this way
+            switch (c)
             {
-                if (c == ',')
-                {
+                case ' ':
+                    continue;
+                case ',':
                     assignmentTargets.push_back("");
                     continue;
-                }
-
-                assignmentTargets[assignmentTargets.size() - 1] += c;
+                default:
+                    assignmentTargets[assignmentTargets.size() - 1] += c;
             }
         }
 
         currentCommand = currentCommand.substr(trimmingIdx);
         std::string keyword = currentCommand.substr(0, currentCommand.find(' '));
 
-        if (commandsMap.count(keyword))
+        try
         {
-            if (!commandsMap[keyword]->Handle(currentCommand))
+            if (commandsMap.count(keyword))
             {
-                return false;
+                if (!commandsMap[keyword]->Handle(currentCommand))
+                {
+                    return false;
+                }
+            }
+            else if (variables.Has(keyword))
+            {
+                Device* device = board->GetDevice(std::stoi(variables.Get(keyword)));
+                if (device == nullptr)
+                {
+                    CLI_OUT("Unknown command: \"" << currentCommand << "\"")
+                }
+                else
+                {
+                    size_t msgStartIdx = std::min(currentRawCommand.size(), keyword.size() + 1);
+                    device->SendMessage(currentRawCommand.substr(msgStartIdx));
+                }
+            }
+            else
+            {
+                CLI_OUT("Unknown command: \"" << currentCommand << "\"");
             }
         }
-        else if (variables.Has(currentRawCommand))
+        catch (DeviceExceptions::StringOutputIssued& exc)
         {
-            Device* device = board->GetDevice(std::stoi(variables.Get(currentRawCommand)));
-            if (device == nullptr)
-                CLI_OUT("Unknown command: \"" << currentCommand << "\"")
-            else
-                CLI_OUT(std::basic_string<char>(*device));
-        }
-        else
-        {
-            CLI_OUT("Unknown command: \"" << currentCommand << "\"");
+            CLI_OUT(exc.GetOutput());
         }
 
         int targetIdx = assignmentTargets.size();

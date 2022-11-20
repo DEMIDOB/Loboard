@@ -17,6 +17,8 @@ public:
     
     void PowerOn();
     void PowerOff();
+
+    void SendMessage(const std::string& message) override;
 };
 
 #endif /* PowerDevice_hpp */
