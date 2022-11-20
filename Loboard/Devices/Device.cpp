@@ -227,6 +227,8 @@ void Device::deleteOutput(DeviceID destID)
 
     DirectionalWire* outputWire = outputs[destID];
     outputs.erase(destID);
+
+    Update();
 }
 
 void Device::SendMessage(const std::string &message)
