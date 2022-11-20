@@ -31,6 +31,8 @@
     [ ] make every device respond to an empty message with it's repr (which would not change its current behavior)
     [ ] power's on/off commands
 
+[ ] refactor for exceptions to find their place in this beautiful codebase ^_^
+
 [ ] NAND
 [ ] NOR
 
