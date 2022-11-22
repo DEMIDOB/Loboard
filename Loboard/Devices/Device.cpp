@@ -189,10 +189,42 @@ Device::operator std::basic_string<char>() const
         prefix = "!"; // prefix indicating that the device is ready
     }
 
-    repr += "[#" + std::to_string(id) + " " + GetName() + (GetState() ? " +" : " -") + "]";
+    std::string s_id = std::to_string(id);
+    std::string stateIndicator = GetState() ? " +" : " -";
 
-//    TODO: repr inputs & outputs
-//    std::string inputs;
+    repr += "[#" + s_id + " " + GetName() + stateIndicator + "]";
+
+    std::string s_inputs;
+    std::string s_outputs;
+
+    for (size_t i = 0; i < inputsCount; ++i)
+    {
+        if (inputs[i] != nullptr)
+        {
+            s_inputs += std::to_string(inputs[i]->GetSrc()->id);
+        }
+
+        if (s_inputs[s_inputs.size() - 1] != ' ')
+        {
+            s_inputs += " ";
+        }
+    }
+
+    for (auto& output : outputs)
+    {
+        s_outputs += std::to_string(output.second->GetDest()->id);
+        s_outputs += " ";
+    }
+
+    if (inputsCount)
+    {
+        repr += " ( " + s_inputs + ")";
+    }
+
+    if (!outputs.empty())
+    {
+        repr += " -> { " + s_outputs + "}";
+    }
 
     return prefix + repr;
 }

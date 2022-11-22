@@ -31,9 +31,9 @@
     [X] make every device respond to an empty message with it's repr (which would not change its current behavior)
     [X] power's on/off commands
 
-[ ] output ins/outs in device's repr
-[ ] NAND
-[ ] NOR
+[X] output ins/outs in device's repr
+[X] NAND
+[X] NOR
 
 [ ] refactor for exceptions to find their place in this beautiful codebase ^_^
 
