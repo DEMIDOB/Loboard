@@ -1,0 +1,15 @@
+x, y, z = new power 3
+ia1 = new and; ix1 = new xor
+ia2 = new and
+l = new or; r = new xor
+wire l g; wire r g
+wire ia2 l
+wire ia1 l
+wire x r
+wire ix1 r
+wire x ia2
+wire ix1 ia2
+wire y ia1
+wire z ia1
+wire y ix1
+wire z ix1
