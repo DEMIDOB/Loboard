@@ -64,6 +64,7 @@ bool CommandLineInterface::Update()
 bool CommandLineInterface::HandleCommand(char **c_cmd_ptr)
 {
     std::string cmd = std::string(*c_cmd_ptr);
+    addCommandToSessionHistory(cmd);
 
     std::vector<std::string> commands;
     size_t currentStart = 0, currentEnd = 0;

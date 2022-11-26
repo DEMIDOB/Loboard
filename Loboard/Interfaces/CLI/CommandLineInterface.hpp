@@ -11,6 +11,7 @@
 #include <iostream>
 #include <map>
 #include <stack>
+#include <vector>
 #include <string>
 
 #include "Interface.hpp"
@@ -25,8 +26,8 @@ class CommandLineInterface: public Interface
 {
 private:
     std::map<std::string, CommandHandler*> commandsMap;
-
     std::stack<CommandReturn> commandReturnStack;
+
 public:
     explicit CommandLineInterface(Board* board);
 

@@ -17,6 +17,12 @@ Interface::~Interface()
     delete board;
 }
 
+void Interface::addCommandToSessionHistory(std::string cmd)
+{
+    // TODO: check for redundancy
+    currentSessionHistory.push_back(cmd);
+}
+
 Board* Interface::GetBoard() const
 {
     return board;

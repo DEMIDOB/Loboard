@@ -11,5 +11,7 @@ Makefile
 .vs
 Loboard/out
 Loboard/Testing
+lastLoboardSession.lbs
 
 */lb
+

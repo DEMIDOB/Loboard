@@ -13,14 +13,20 @@
 
 class Interface
 {
+private:
+    std::vector<std::string> currentSessionHistory;
+    
 protected:
     Board* board;
+
+    void addCommandToSessionHistory(std::string cmd);
 public:
     explicit Interface(Board* board);
     ~Interface();
     
     Board* GetBoard() const;
-    
+    std::vector<std::string> GetCurrentSessionHistory() const { return currentSessionHistory; }
+
     virtual bool Update() = 0;
 };
 

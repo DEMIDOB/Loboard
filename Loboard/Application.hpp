@@ -28,8 +28,9 @@ protected:
     const char** argv;
 
     Application(int argc, const char** argv);
+    bool recordCurrentSession;
     bool running;
-    
+
 public:
     ~Application();
     
@@ -38,7 +39,7 @@ public:
     
     static Application* getInstance(int argc, const char** argv);
     static Application* getInstance();
-    void run();
+    void run(bool dontRecordCurrentSessionSetting = false);
     
 private:
     Board* m_Board;
