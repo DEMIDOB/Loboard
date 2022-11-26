@@ -11,7 +11,7 @@
 class LsCommand: public CommandHandler
 {
 public:
-    LsCommand(CommandLineInterface *commandLineInterface, std::string keyword);
+    LsCommand(CommandLineInterface *commandLineInterface);
     bool Handle(const std::string &cmd) override;
 };
 

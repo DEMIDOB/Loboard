@@ -14,6 +14,7 @@
 #include "CLI/Commands/NewdCommand.hpp"
 #include "CLI/Commands/RemoveCommand.hpp"
 #include "CLI/Commands/StateCommand.hpp"
+#include "CLI/Commands/BstateCommand.hpp"
 #include "CLI/Commands/WireCommand.hpp"
 #include "Exceptions/StringOutputIssued.hpp"
 
@@ -21,11 +22,12 @@ CommandLineInterface::CommandLineInterface(Board* board)
     : Interface::Interface(board), variables(SessionVariablesSet())
 {
     std::vector<CommandHandler*> commands = {
-        new LsCommand(this, "ls"),
+        new LsCommand(this),
         new ExitCommand(this, "exit"),
         new NewCommand(this, "new"),
         new RemoveCommand(this, "rm"),
         new StateCommand(this, "state"),
+        new BstateCommand(this),
         new WireCommand(this, "wire"),
     };
 

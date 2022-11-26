@@ -6,8 +6,8 @@
 #include "Board.hpp"
 #include "../CommandLineInterface.hpp"
 
-LsCommand::LsCommand(CommandLineInterface *commandLineInterface, std::string keyword) : CommandHandler(
-    commandLineInterface, std::move(keyword))
+LsCommand::LsCommand(CommandLineInterface *commandLineInterface)
+    : CommandHandler(commandLineInterface, "ls")
 {
 
 }

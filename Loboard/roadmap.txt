@@ -35,8 +35,8 @@
 [X] NAND
 [X] NOR
 
-[ ] bstate(: state) command
-[ ] make the bstate command accept an arbitrary amount of arguments and output the (0/1)s adjacently
+[X] bstate(: state) command
+[X] make the bstate command accept an arbitrary amount of arguments and output the (0/1)s adjacently
 [ ] automatically save current session after every command; do not check for redundancy yet
 [ ] echo on/off command
 
