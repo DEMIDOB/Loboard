@@ -23,6 +23,10 @@
 #define WINDOW_TITLE "Loboard"
 
 class Application {
+private:
+    Board* m_Board;
+    Interface* interface;
+
 protected:
     int argc;
     const char** argv;
@@ -37,13 +41,9 @@ public:
     Application(Application& other) = delete;
     void operator=(const Application&) = delete;
     
-    static Application* getInstance(int argc, const char** argv);
-    static Application* getInstance();
-    void run(bool dontRecordCurrentSessionSetting = false);
-    
-private:
-    Board* m_Board;
-    Interface* interface;
+    static Application* GetInstance(int argc, const char** argv);
+    static Application* GetInstance();
+    void Run(bool dontRecordCurrentSessionSetting = false);  
 };
 
 #endif /* Application_hpp */

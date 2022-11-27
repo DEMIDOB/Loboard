@@ -21,7 +21,7 @@ Application::~Application()
     
 }
 
-Application* Application::getInstance(int argc, const char** argv)
+Application* Application::GetInstance(int argc, const char** argv)
 {
     static Application* shared_;
     
@@ -34,7 +34,7 @@ Application* Application::getInstance(int argc, const char** argv)
     return shared_;
 }
 
-Application *Application::getInstance()
+Application *Application::GetInstance()
 {
     static Application* shared_;
 
@@ -47,7 +47,7 @@ Application *Application::getInstance()
     return nullptr;
 }
 
-void Application::run(bool dontRecordCurrentSessionSetting)
+void Application::Run(bool dontRecordCurrentSessionSetting)
 {
     // prevent from entering the main loop multiple times
     

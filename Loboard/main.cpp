@@ -10,8 +10,8 @@
 
 int main(int argc, const char** argv)
 {
-    Application* app = Application::getInstance(argc, argv);
-    app->run();
+    Application* app = Application::GetInstance(argc, argv);
+    app->Run();
     delete app;
     return 0;
 }
