@@ -15,7 +15,7 @@ class Interface
 {
 private:
     std::vector<std::string> currentSessionHistory;
-    
+
 protected:
     Board* board;
 
@@ -25,7 +25,7 @@ public:
     ~Interface();
     
     Board* GetBoard() const;
-    std::vector<std::string> GetCurrentSessionHistory() const { return currentSessionHistory; }
+    const std::vector<std::string>& GetCurrentSessionHistory() const { return currentSessionHistory; }
 
     virtual bool Update() = 0;
 };

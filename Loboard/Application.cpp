@@ -65,9 +65,9 @@ void Application::Run(bool dontRecordCurrentSessionSetting)
     const char* currentSessionFile = "lastLoboardSession.lbs";
     const char* fileArgMark = "-f";
     const char* dontRecordSessionMark = "--no-backup";
-    bool dontRecordCurrentSession = dontRecordCurrentSessionSetting;
 
-    unsigned int backupFileInitializationMode = std::ios::out;
+    bool dontRecordCurrentSession = dontRecordCurrentSessionSetting;
+    // unsigned int backupFileInitializationMode = std::ios::out;
 
     for (int ai = 1; ai < argc; ++ai)
     {
@@ -88,12 +88,9 @@ void Application::Run(bool dontRecordCurrentSessionSetting)
 
             running = ((CommandLineInterface*) interface)->HandleCommand(&fileDataBuffer);
             delete fileDataBuffer;
-
-            if (strcmp(saveFPath, currentSessionFile) == 0)
-                backupFileInitializationMode = std::ios::app;
         }
 
-        dontRecordCurrentSession = dontRecordCurrentSession || strcmp(argv[ai], dontRecordSessionMark) == 0;
+        dontRecordCurrentSession = dontRecordCurrentSession || !strcmp(argv[ai], dontRecordSessionMark);
     }
 
     this->recordCurrentSession = !dontRecordCurrentSession;
@@ -102,22 +99,25 @@ void Application::Run(bool dontRecordCurrentSessionSetting)
 
     if (recordCurrentSession)
     {
-        sessionBackupFile.open(currentSessionFile, backupFileInitializationMode);
+        sessionBackupFile.open(currentSessionFile, std::ios::out);
         sessionBackupFile.write("", 0);
         sessionBackupFile.close();
     }
 
 
     // main loop
+    size_t lastWrittenCommandIdx = 0;
 
     while (running)
     {
         running = interface->Update();
+        const std::vector<std::string>& sessionHistory = interface->GetCurrentSessionHistory();
 
-        if (recordCurrentSession && running)
+        for (; lastWrittenCommandIdx < sessionHistory.size() && recordCurrentSession && running;
+             ++lastWrittenCommandIdx)
         {
             sessionBackupFile.open(currentSessionFile, std::ios::app);
-            std::string lastCommand = interface->GetCurrentSessionHistory().back();
+            std::string lastCommand = sessionHistory[lastWrittenCommandIdx];
             lastCommand.append("\n");
             sessionBackupFile.write(lastCommand.c_str(), lastCommand.size());
             sessionBackupFile.close(); // closed in order for the file to stay closed even in case of

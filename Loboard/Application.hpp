@@ -27,7 +27,6 @@ private:
     Board* m_Board;
     Interface* interface;
 
-protected:
     int argc;
     const char** argv;
 
@@ -43,7 +42,10 @@ public:
     
     static Application* GetInstance(int argc, const char** argv);
     static Application* GetInstance();
+
     void Run(bool dontRecordCurrentSessionSetting = false);  
+
+    bool ShouldRecordCurrentSession() const { return recordCurrentSession; }
 };
 
 #endif /* Application_hpp */
